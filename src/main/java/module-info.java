@@ -13,4 +13,8 @@ module com.example.siyam_2207031_cvbuilder {
 
     opens com.example.siyam_2207031_cvbuilder to javafx.fxml;
     exports com.example.siyam_2207031_cvbuilder;
+    exports com.example.siyam_2207031_cvbuilder.controller;
+    opens com.example.siyam_2207031_cvbuilder.controller to javafx.fxml;
+    exports com.example.siyam_2207031_cvbuilder.model;
+    opens com.example.siyam_2207031_cvbuilder.model to javafx.fxml;
 }
