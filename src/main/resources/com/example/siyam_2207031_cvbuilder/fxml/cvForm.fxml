@@ -1,14 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cvbuilder.controller.CVFormController">
+    <top>
+        <VBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #2C3E50;" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Create Your CV" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                </Label>
+                <Label text="Fill in your details to generate your professional CV" textFill="#ECF0F1">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Label>
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: #ECF0F1;" BorderPane.alignment="CENTER">
+            <content>
+                <VBox spacing="20.0" style="-fx-background-color: #ECF0F1;">
+                    <children>
+                        <!-- Personal Information Section -->
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;">
+                            <children>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Personal Information" />
+                                <GridPane hgap="15.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                    </columnConstraints>
+                                    <children>
+                                        <Label text="Full Name *" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                        <TextField fx:id="fullNameField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <Label text="Email *" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Phone Number *" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                        <TextField fx:id="phoneField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                        <Label text="Address *" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
 
-</AnchorPane>
+                        <!-- Education Section -->
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;">
+                            <children>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Educational Qualifications *" />
+                                <GridPane hgap="15.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                    </columnConstraints>
+                                    <children>
+                                        <Label text="Institution" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                        <TextField fx:id="institutionField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <Label text="Degree" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <TextField fx:id="degreeField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Field of Study" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                        <TextField fx:id="fieldOfStudyField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                        <Label text="Graduation Year" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="graduationYearField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    </children>
+                                </GridPane>
+                                <Button fx:id="addEducationButton" mnemonicParsing="false" text="+ Add Education" />
+                                <VBox fx:id="educationListBox" spacing="10.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
+
+                        <!-- Work Experience Section -->
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;">
+                            <children>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Work Experience *" />
+                                <GridPane hgap="15.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                    </columnConstraints>
+                                    <children>
+                                        <Label text="Company" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                        <TextField fx:id="companyField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <Label text="Position" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <TextField fx:id="positionField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Start Date" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                        <TextField fx:id="startDateField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                        <Label text="End Date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="endDateField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                        <TextArea fx:id="experienceDescriptionField" prefRowCount="3" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" wrapText="true" />
+                                    </children>
+                                </GridPane>
+                                <Button fx:id="addExperienceButton" mnemonicParsing="false" text="+ Add Experience" />
+                                <VBox fx:id="experienceListBox" spacing="10.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
+
+                        <!-- Projects Section -->
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;">
+                            <children>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Projects" />
+                                <GridPane hgap="15.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                        <javafx.scene.layout.ColumnConstraints fillWidth="true" hgrow="SOMETIMES" />
+                                    </columnConstraints>
+                                    <children>
+                                        <Label text="Project Title" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                        <TextField fx:id="projectTitleField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <Label text="Technologies" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <TextField fx:id="projectTechnologiesField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                        <TextArea fx:id="projectDescriptionField" prefRowCount="3" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" wrapText="true" />
+                                    </children>
+                                </GridPane>
+                                <Button fx:id="addProjectButton" mnemonicParsing="false" text="+ Add Project" />
+                                <VBox fx:id="projectListBox" spacing="10.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
+
+                        <!-- Skills Section -->
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-width: 1;">
+                            <children>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Skills *" />
+                                <Label text="Enter skills separated by commas" textFill="#7F8C8D" />
+                                <TextArea fx:id="skillsField" prefRowCount="4" wrapText="true" />
+                            </children>
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
+
+                        <!-- Buttons Section -->
+                        <HBox alignment="CENTER" spacing="15.0">
+                            <children>
+                                <Button fx:id="backButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-font-size: 14;" text="Back" />
+                                <Button fx:id="generateCVButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 14; -fx-padding: 10;" text="Generate CV" />
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
