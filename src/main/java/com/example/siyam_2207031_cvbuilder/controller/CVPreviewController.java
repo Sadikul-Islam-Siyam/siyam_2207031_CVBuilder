@@ -1,6 +1,6 @@
-package com.cvbuilder.controller;
+package com.example.siyam_2207031_cvbuilder.controller;
 
-import com.cvbuilder.model.CV;
+import com.example.siyam_2207031_cvbuilder.model.CV;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

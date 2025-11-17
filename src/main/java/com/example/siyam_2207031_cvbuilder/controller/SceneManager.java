@@ -1,6 +1,6 @@
-package com.cvbuilder.controller;
+package com.example.siyam_2207031_cvbuilder.controller;
 
-import com.cvbuilder.model.CV;
+import com.example.siyam_2207031_cvbuilder.model.CV;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,7 +20,7 @@ public class SceneManager {
 
     public void showHomeScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cvbuilder/fxml/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/siyam_2207031_cvbuilder/fxml/home.fxml"));
             Scene scene = new Scene(loader.load(), 800, 600);
 
             HomeController controller = loader.getController();
@@ -35,7 +35,7 @@ public class SceneManager {
 
     public void showCVFormScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cvbuilder/fxml/cvForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/siyam_2207031_cvbuilder/fxml/cvForm.fxml"));
             Scene scene = new Scene(loader.load(), 1000, 700);
 
             cvFormController = loader.getController();
@@ -50,7 +50,7 @@ public class SceneManager {
 
     public void showCVPreviewScene(CV cv) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cvbuilder/fxml/cvPreview.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/siyam_2207031_cvbuilder/fxml/cvPreview.fxml"));
             Scene scene = new Scene(loader.load(), 1000, 800);
 
             cvPreviewController = loader.getController();

@@ -1,11 +1,10 @@
-package com.cvbuilder.controller;
+package com.example.siyam_2207031_cvbuilder.controller;
 
-import com.cvbuilder.model.CV;
+import com.example.siyam_2207031_cvbuilder.model.CV;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 
 
  //Controller for the CV Form Screen

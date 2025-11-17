@@ -1,4 +1,4 @@
-package com.cvbuilder.model;
+package com.example.siyam_2207031_cvbuilder.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

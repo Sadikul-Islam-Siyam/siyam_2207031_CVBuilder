@@ -1,6 +1,6 @@
-package com.cvbuilder;
+package com.example.siyam_2207031_cvbuilder;
 
-import com.cvbuilder.controller.SceneManager;
+import com.example.siyam_2207031_cvbuilder.controller.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

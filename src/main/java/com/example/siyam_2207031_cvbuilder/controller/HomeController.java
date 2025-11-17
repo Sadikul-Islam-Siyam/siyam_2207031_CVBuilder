@@ -1,4 +1,4 @@
-package com.cvbuilder.controller;
+package com.example.siyam_2207031_cvbuilder.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
