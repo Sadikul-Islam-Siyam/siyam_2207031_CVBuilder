@@ -1,0 +1,172 @@
+/* CV Builder Stylesheet */
+
+/* Root styling */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 12px;
+    -fx-base: #ECF0F1;
+}
+
+/* Button styling */
+.button {
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5;
+    -fx-background-color: #3498DB;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.button:hover {
+    -fx-background-color: #2980B9;
+}
+
+.button:pressed {
+    -fx-background-color: #1F618D;
+}
+
+/* Primary buttons */
+#generateCVButton {
+    -fx-background-color: #27AE60;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+}
+
+#generateCVButton:hover {
+    -fx-background-color: #229954;
+}
+
+#createNewCVButton {
+    -fx-background-color: #27AE60;
+    -fx-font-size: 16px;
+    -fx-padding: 12px 24px;
+}
+
+#createNewCVButton:hover {
+    -fx-background-color: #229954;
+}
+
+/* Back button */
+#backButton {
+    -fx-background-color: #95A5A6;
+}
+
+#backButton:hover {
+    -fx-background-color: #7F8C8D;
+}
+
+/* Home button */
+#homeButton {
+    -fx-background-color: #95A5A6;
+}
+
+#homeButton:hover {
+    -fx-background-color: #7F8C8D;
+}
+
+/* Text field styling */
+.text-field {
+    -fx-padding: 8px;
+    -fx-border-color: #BDC3C7;
+    -fx-border-radius: 3;
+    -fx-border-width: 1;
+    -fx-font-size: 12px;
+    -fx-background-color: white;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498DB;
+    -fx-border-width: 2;
+    -fx-background-color: #F8F9FA;
+}
+
+/* Text area styling */
+.text-area {
+    -fx-padding: 8px;
+    -fx-border-color: #BDC3C7;
+    -fx-border-radius: 3;
+    -fx-border-width: 1;
+    -fx-font-size: 12px;
+    -fx-background-color: white;
+    -fx-control-inner-background: white;
+}
+
+.text-area:focused {
+    -fx-border-color: #3498DB;
+    -fx-border-width: 2;
+    -fx-background-color: #F8F9FA;
+}
+
+.text-area .content {
+    -fx-padding: 5px;
+}
+
+/* Label styling */
+.label {
+    -fx-text-fill: #2C3E50;
+    -fx-font-size: 12px;
+}
+
+/* Scroll pane styling */
+.scroll-pane {
+    -fx-background-color: #ECF0F1;
+    -fx-padding: 0;
+}
+
+.scroll-pane:focused {
+    -fx-background-color: #ECF0F1;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #ECF0F1;
+}
+
+/* Alert styling */
+.alert {
+    -fx-font-size: 12px;
+}
+
+/* Section headers */
+.section-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+/* Card styling */
+.card {
+    -fx-border-color: #BDC3C7;
+    -fx-border-width: 1;
+    -fx-background-color: #F8F9FA;
+    -fx-border-radius: 3;
+    -fx-padding: 10px;
+}
+
+/* VBox and HBox spacing */
+.vbox {
+    -fx-spacing: 10px;
+}
+
+.hbox {
+    -fx-spacing: 10px;
+}
+
+/* Separator styling */
+.separator {
+    -fx-border-color: #3498DB;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Header styling */
+.header {
+    -fx-background-color: #2C3E50;
+    -fx-padding: 20px;
+}
+
+.header .label {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
