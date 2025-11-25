@@ -2,16 +2,26 @@ package com.example.siyam_2207031_cvbuilder.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.beans.property.*;
+
+import java.sql.Timestamp;
 
 /**
  * Model class to represent and store CV data
+ * Supports database persistence and Observable properties for JavaFX
  */
 public class CV {
-    private String fullName;
-    private String email;
-    private String phoneNumber;
-    private String address;
-    private String profilePhoto;
+    // Database fields
+    private long id;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+
+    // Observable properties for JavaFX data binding
+    private final StringProperty fullName = new SimpleStringProperty();
+    private final StringProperty email = new SimpleStringProperty();
+    private final StringProperty phoneNumber = new SimpleStringProperty();
+    private final StringProperty address = new SimpleStringProperty();
+    private final StringProperty profilePhoto = new SimpleStringProperty();
 
     private ObservableList<Education> educations;
     private ObservableList<Experience> experiences;
@@ -25,45 +35,90 @@ public class CV {
         this.skills = FXCollections.observableArrayList();
     }
 
-    // Personal Information Getters & Setters
+    // Database field getters and setters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    // Personal Information Getters & Setters with Observable Property Support
     public String getFullName() {
-        return fullName;
+        return fullName.get();
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        this.fullName.set(fullName);
+    }
+
+    public StringProperty fullNameProperty() {
+        return fullName;
     }
 
     public String getEmail() {
-        return email;
+        return email.get();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email.set(email);
+    }
+
+    public StringProperty emailProperty() {
+        return email;
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNumber.get();
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber.set(phoneNumber);
+    }
+
+    public StringProperty phoneNumberProperty() {
+        return phoneNumber;
     }
 
     public String getAddress() {
-        return address;
+        return address.get();
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address.set(address);
+    }
+
+    public StringProperty addressProperty() {
+        return address;
     }
 
     public String getProfilePhoto() {
-        return profilePhoto;
+        return profilePhoto.get();
     }
 
     public void setProfilePhoto(String profilePhoto) {
-        this.profilePhoto = profilePhoto;
+        this.profilePhoto.set(profilePhoto);
+    }
+
+    public StringProperty profilePhotoProperty() {
+        return profilePhoto;
     }
 
     // Collections Getters
@@ -85,13 +140,22 @@ public class CV {
 
     // Validation method
     public boolean isValid() {
-        return fullName != null && !fullName.trim().isEmpty() &&
-                email != null && !email.trim().isEmpty() &&
-                phoneNumber != null && !phoneNumber.trim().isEmpty() &&
-                address != null && !address.trim().isEmpty() &&
+        return getFullName() != null && !getFullName().trim().isEmpty() &&
+                getEmail() != null && !getEmail().trim().isEmpty() &&
+                getPhoneNumber() != null && !getPhoneNumber().trim().isEmpty() &&
+                getAddress() != null && !getAddress().trim().isEmpty() &&
                 !educations.isEmpty() &&
                 !skills.isEmpty() &&
                 !experiences.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "CV{" +
+                "id=" + id +
+                ", fullName='" + getFullName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                '}';
     }
 
     /**

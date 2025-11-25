@@ -1,14 +1,19 @@
 package com.example.siyam_2207031_cvbuilder.controller;
 
+import com.example.siyam_2207031_cvbuilder.database.CVRepository;
 import com.example.siyam_2207031_cvbuilder.model.CV;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 
+import java.util.concurrent.CompletableFuture;
 
- //Controller for the CV Form Screen
-
+/**
+ * Controller for the CV Form Screen with Database Integration
+ * Supports concurrent validation and asynchronous save operations
+ */
 public class CVFormController {
 
     @FXML
@@ -74,21 +79,61 @@ public class CVFormController {
 
     private SceneManager sceneManager;
     private CV cv;
+    private CVRepository cvRepository;
+    private boolean isEditMode = false;
 
     @FXML
     public void initialize() {
         cv = new CV();
+        cvRepository = CVRepository.getInstance();
 
         addEducationButton.setOnAction(event -> addEducation());
         addExperienceButton.setOnAction(event -> addExperience());
         addProjectButton.setOnAction(event -> addProject());
 
-        generateCVButton.setOnAction(event -> generateCV());
+        generateCVButton.setOnAction(event -> saveCVToDatabaseAsync());
         backButton.setOnAction(event -> sceneManager.showHomeScene());
     }
 
     public void setSceneManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
+    }
+
+    /**
+     * Load existing CV for editing
+     */
+    public void loadCV(CV existingCV) {
+        this.cv = existingCV;
+        this.isEditMode = true;
+        
+        // Populate fields
+        fullNameField.setText(cv.getFullName());
+        emailField.setText(cv.getEmail());
+        phoneField.setText(cv.getPhoneNumber());
+        addressField.setText(cv.getAddress());
+        
+        // Display existing data
+        for (CV.Education edu : cv.getEducations()) {
+            displayEducation(edu);
+        }
+        
+        for (CV.Experience exp : cv.getExperiences()) {
+            displayExperience(exp);
+        }
+        
+        for (CV.Project proj : cv.getProjects()) {
+            displayProject(proj);
+        }
+        
+        // Display skills
+        StringBuilder skillsText = new StringBuilder();
+        for (String skill : cv.getSkills()) {
+            if (skillsText.length() > 0) skillsText.append(", ");
+            skillsText.append(skill);
+        }
+        skillsField.setText(skillsText.toString());
+        
+        generateCVButton.setText("Update CV");
     }
 
     private void addEducation() {
@@ -229,29 +274,71 @@ public class CVFormController {
         return card;
     }
 
-    private void generateCV() {
-        if (!validateAllRequired()) {
-            showError("Validation Error", "Please fill all required fields and add at least one entry for Education and Work Experience");
-            return;
-        }
+    /**
+     * Save CV to database asynchronously with concurrent validation
+     */
+    private void saveCVToDatabaseAsync() {
+        // Concurrent validation using CompletableFuture
+        CompletableFuture<Boolean> validationFuture = CompletableFuture.supplyAsync(() -> {
+            return validateAllRequired();
+        });
 
-        // Set personal information
-        cv.setFullName(fullNameField.getText());
-        cv.setEmail(emailField.getText());
-        cv.setPhoneNumber(phoneField.getText());
-        cv.setAddress(addressField.getText());
-
-        // Set skills
-        String skillsText = skillsField.getText();
-        if (!skillsText.trim().isEmpty()) {
-            String[] skillsArray = skillsText.split(",");
-            cv.getSkills().clear();
-            for (String skill : skillsArray) {
-                cv.getSkills().add(skill.trim());
+        validationFuture.thenAccept(isValid -> {
+            if (!isValid) {
+                Platform.runLater(() -> {
+                    showError("Validation Error", "Please fill all required fields and add at least one entry for Education and Work Experience");
+                });
+                return;
             }
-        }
 
-        sceneManager.showCVPreviewScene(cv);
+            // Set personal information
+            Platform.runLater(() -> {
+                cv.setFullName(fullNameField.getText());
+                cv.setEmail(emailField.getText());
+                cv.setPhoneNumber(phoneField.getText());
+                cv.setAddress(addressField.getText());
+
+                // Set skills
+                String skillsText = skillsField.getText();
+                if (!skillsText.trim().isEmpty()) {
+                    String[] skillsArray = skillsText.split(",");
+                    cv.getSkills().clear();
+                    for (String skill : skillsArray) {
+                        cv.getSkills().add(skill.trim());
+                    }
+                }
+
+                // Show progress
+                generateCVButton.setDisable(true);
+                generateCVButton.setText("Saving...");
+
+                // Save or update based on mode
+                CompletableFuture<?> saveFuture;
+                if (isEditMode) {
+                    saveFuture = cvRepository.updateAsync(cv);
+                } else {
+                    saveFuture = cvRepository.saveAsync(cv);
+                }
+
+                saveFuture
+                    .thenRun(() -> Platform.runLater(() -> {
+                        generateCVButton.setDisable(false);
+                        generateCVButton.setText(isEditMode ? "Update CV" : "Generate CV");
+                        showInfo("Success", "CV saved successfully to database!");
+                        
+                        // Navigate to preview
+                        sceneManager.showCVPreviewScene(cv);
+                    }))
+                    .exceptionally(throwable -> {
+                        Platform.runLater(() -> {
+                            generateCVButton.setDisable(false);
+                            generateCVButton.setText(isEditMode ? "Update CV" : "Generate CV");
+                            showError("Database Error", "Failed to save CV: " + throwable.getMessage());
+                        });
+                        return null;
+                    });
+            });
+        });
     }
 
     private boolean validateEducationFields() {

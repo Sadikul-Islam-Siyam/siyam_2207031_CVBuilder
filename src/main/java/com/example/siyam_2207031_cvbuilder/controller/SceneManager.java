@@ -48,6 +48,37 @@ public class SceneManager {
         }
     }
 
+    public void showCVFormScene(CV cv) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/siyam_2207031_cvbuilder/fxml/cvForm.fxml"));
+            Scene scene = new Scene(loader.load(), 1000, 700);
+
+            cvFormController = loader.getController();
+            cvFormController.setSceneManager(this);
+            cvFormController.loadCV(cv);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("CV Builder - Edit CV");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showCVListScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/siyam_2207031_cvbuilder/fxml/cvList.fxml"));
+            Scene scene = new Scene(loader.load(), 1200, 700);
+
+            CVListController controller = loader.getController();
+            controller.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("CV Builder - All CVs");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showCVPreviewScene(CV cv) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/siyam_2207031_cvbuilder/fxml/cvPreview.fxml"));

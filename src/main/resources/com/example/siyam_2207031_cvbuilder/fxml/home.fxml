@@ -35,7 +35,8 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Button fx:id="createNewCVButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-padding: 10;" text="Create New CV" />
+                <Button fx:id="createNewCVButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 16; -fx-padding: 10; -fx-background-color: #3498DB; -fx-text-fill: white;" text="Create New CV" />
+                <Button fx:id="viewAllCVsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 16; -fx-padding: 10; -fx-background-color: #27AE60; -fx-text-fill: white;" text="View All CVs" />
             </children>
             <padding>
                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
